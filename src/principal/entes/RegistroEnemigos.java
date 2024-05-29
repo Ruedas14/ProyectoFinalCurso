@@ -11,7 +11,7 @@ public class RegistroEnemigos {
 	    Enemigo enemigo = null;
 	    switch (idEnemigo) {
 	        case 1:
-	            enemigo = new Zombie(idEnemigo, "Zombie", 10, 1, "/sonidos/rugidoZombie.wav");
+	            enemigo = new Enemigo(idEnemigo, "Zombie", 10, 1, "/sonidos/rugidoZombie.wav");
 	            
 	            break;
 	    }

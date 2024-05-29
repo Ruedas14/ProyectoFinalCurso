@@ -443,13 +443,13 @@ public class Mapa {
 			}
 		}
 		
-		if(!enemigos.isEmpty()) {
+		/*if(!enemigos.isEmpty()) {
 			for(Enemigo enemigo : enemigos) {
 				final int puntoX = (int) enemigo.getPosicionX()  * Constantes.LADO_SPRITE- (int) ElementosPrinci.jugador.getPosicionX() + MARGEN_X;
 				final int puntoY = (int) enemigo.getPosicionY()  * Constantes.LADO_SPRITE - (int) ElementosPrinci.jugador.getPosicionY() + MARGEN_Y;
 				enemigo.dibujar(g, puntoX, puntoY);
 			}
-		}
+		}*/
 	}
 	
 	/**

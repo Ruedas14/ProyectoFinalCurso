@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.List;
 
 import principal.Constantes;
 import principal.ElementosPrinci;
@@ -71,6 +72,7 @@ public class Jugador {
 	
 	private ArrayList<Rectangle> alcanceActual;
 	
+	
 	public Jugador() {
 		posicionX = ElementosPrinci.mapa.getPosicionInicial().getX();
 		posicionY = ElementosPrinci.mapa.getPosicionInicial().getY();
@@ -90,6 +92,7 @@ public class Jugador {
 		
 		alcanceActual = new ArrayList<>();
 		
+		 
 	}
 	
 	public boolean colisionaConEnemigo(Enemigo enemigo) {
@@ -111,14 +114,13 @@ public class Jugador {
 		animar();
 		actualizarArmas();
 		
-		if (ElementosPrinci.enemigos != null) {
-	        for (Enemigo enemigo : ElementosPrinci.enemigos) {
-	            if (colisionaConEnemigo(enemigo)) {
-	                // Si hay colisión, reduce la vida del jugador
-	                reducirVida(enemigo.getAtaque());
-	            }
-	        }
-	    }
+		if (ElementosPrinci.enemi != null) {
+		    for (Enemigo enemigo : ElementosPrinci.enemi) {
+		        if (colisionaConEnemigo(enemigo)) {
+		            reducirVida(enemigo.getAtaque());
+		        }
+		    }
+		}
 	}
 	
 	private void actualizarArmas() {
@@ -306,7 +308,7 @@ public class Jugador {
 	 *  Método para reducir la vida del jugador
 	 * @param cantidad
 	 */
-    public void reducirVida(float ataque) {
+    public void reducirVida(double ataque) {
         vidaActual -= ataque;
         if (vidaActual <= 0) {
             vidaActual = 0; 
@@ -399,6 +401,15 @@ public class Jugador {
 		
 		return false;
 	}
+	
+	public void disparar(List<Enemigo> enemigos, float cantidad) {
+        for (Enemigo enemigo : enemigos) {
+            if (colisionaConEnemigo(enemigo)) {
+                enemigo.reducirVida(cantidad);
+                return; // Solo reducimos la vida de un enemigo a la vez
+            }
+        }
+    }
 	
 	
 	

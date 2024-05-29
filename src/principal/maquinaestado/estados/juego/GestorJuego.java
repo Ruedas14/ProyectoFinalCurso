@@ -15,6 +15,8 @@ import principal.mapas.Mapa;
 import principal.maquinaestado.EstadoJuego;
 
 
+
+
 /**
  * ejecutara el juego mientras exploramos con el jugador
  */
@@ -25,6 +27,7 @@ public class GestorJuego implements EstadoJuego {
 	 * menu de inventario inferior del jugador
 	 */
 	HUD menuHUD;
+	public static Enemigo[] enemi;
 	
 	/**
 	 * inicializar
@@ -62,18 +65,18 @@ public class GestorJuego implements EstadoJuego {
 		ElementosPrinci.jugador = new Jugador();
 	}
 	
-	private void iniciarEnemigos() {
-        ElementosPrinci.enemigos = new Enemigo[5];
-        for (int i = 0; i < ElementosPrinci.enemigos.length; i++) {
-            int x = (i + 1) * 100;  
-            int y = (i + 1) * 50;   
-            int ataque = 2;        
-            int vida = 100;         
-            
-            ElementosPrinci.enemigos[i] = new Enemigo(i, "Enemigo " + i, vida, ataque, "/sonidos/rugidoZombie.wav");
-            ElementosPrinci.enemigos[i].establecerPosicion(x, y);
-        }
-    }
+	public static void iniciarEnemigos() {
+	    enemi = new Enemigo[3];
+	    for (int i = 0; i < enemi.length; i++) {
+	        int x = (i + 1) * 100;  
+	        int y = (i + 1) * 50;   
+	        int ataque = 1;        
+	        int vida = 100;         
+	        
+	        enemi[i] = new Enemigo(i, "Enemigo " + i, vida, ataque, "/sonidos/rugidoZombie.wav");
+	        enemi[i].establecerPosicion(x, y);
+	    }
+	}
 	
 	public void actualizar() {
 		if(ElementosPrinci.jugador.getLIMITE_ARRIBA().intersects(ElementosPrinci.mapa.getLugarSalida())) {
@@ -82,16 +85,16 @@ public class GestorJuego implements EstadoJuego {
 		
 		ElementosPrinci.jugador.actualizar();
 		ElementosPrinci.mapa.actualizar();
-		for (Enemigo enemigo : ElementosPrinci.enemigos) {
-            enemigo.actualizar(ElementosPrinci.jugador);
-            System.out.println("Posición del enemigo: (" + enemigo.getPosicionX() + ", " + enemigo.getPosicionY() + ")");
-        }
+		for (Enemigo enemigo : enemi) {
+		    enemigo.actualizar(ElementosPrinci.jugador);
+		    System.out.println("Posición del enemigo: (" + enemigo.getPosicionX() + ", " + enemigo.getPosicionY() + ")");
+		}
 	}
 	
 	public void dibujar(Graphics g) {
 		ElementosPrinci.mapa.dibujar(g);
 		ElementosPrinci.jugador.dibujar(g);
-		for (Enemigo enemigo : ElementosPrinci.enemigos) {
+		for (Enemigo enemigo : enemi) {
             int puntoX = (int) (enemigo.getPosicionX() * Constantes.LADO_SPRITE - ElementosPrinci.jugador.getPosicionX() + Constantes.MARGEN_X);
             int puntoY = (int) (enemigo.getPosicionY() * Constantes.LADO_SPRITE - ElementosPrinci.jugador.getPosicionY() + Constantes.MARGEN_Y);
             enemigo.dibujar(g, puntoX, puntoY);

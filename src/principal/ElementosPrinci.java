@@ -10,8 +10,14 @@ public class ElementosPrinci {
 	public static Mapa mapa = new Mapa(Constantes.RUTA_MAPA);
 	public static Jugador jugador = new Jugador();
 	public static Inventario inventario = new Inventario();
-	public static Enemigo[] enemigos;
+	public static Enemigo[] enemi = new Enemigo[3];
 	
+	static {
+        // Inicialización de los enemigos
+        for (int i = 0; i < enemi.length; i++) {
+            enemi[i] = new Enemigo(/* Parámetros de inicialización */);
+        }
+    }
 	
 	
 	public static void reiniciar() {
@@ -22,7 +28,8 @@ public class ElementosPrinci {
 	    // Resetear la vida y la estamina del jugador
 	    ElementosPrinci.jugador.vidaActual = Jugador.VIDA_MAX;
 	    ElementosPrinci.jugador.estamina = Jugador.ESTAMINA_MAX;	
+	    
+	    
 	}
-	
-	
+
 }

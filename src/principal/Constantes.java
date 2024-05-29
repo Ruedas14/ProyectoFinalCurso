@@ -32,7 +32,7 @@ public class Constantes {
 	public static String RUTA_ICONO_RATO ="/imagenes/iconos/iconoCursor.png";
 	public static String RUTA_PERSONAJE ="/imagenes/hojasPersonajes/jugador.png";
 	public static String RUTA_PERSONAJE_ARMADO ="/imagenes/hojasPersonajes/jugador_arma.png";
-	public static String RUTA_ENEMIGO ="/imagenes/hojasEnemigos/";
+	public static String RUTA_ENEMIGO ="/imagenes/hojasEnemigos/1.png";
 	public static String RUTA_ICONO_VENTANA ="/imagenes/icono/iconoVentana.png";
 	public static String RUTA_LOGOTIPO ="/imagenes/iconos/iconoSFondo.png";
 	public static String RUTA_OBJETOS = "/imagenes/hojasObjetos/Healt.png";
